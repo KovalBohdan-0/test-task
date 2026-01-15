@@ -1,5 +1,7 @@
 # Weather App
 
+Link to preview - https://test-task-three-theta.vercel.app/
+
 A simple and elegant weather forecast application built with **React**, **TypeScript**, and **Tailwind CSS**.
 
 ## Getting Started
