@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react'
+import { memo } from 'react'
 
 interface ErrorStateProps {
     message: string
@@ -7,9 +7,9 @@ interface ErrorStateProps {
 }
 
 function ErrorStateComponent({ message, onRetry, showRetry = true }: ErrorStateProps) {
-    const handleRetry = useCallback(() => {
+    const handleRetry = () => {
         onRetry?.()
-    }, [onRetry])
+    }
 
     return (
         <div className="flex flex-col items-center gap-4 py-4 px-6 bg-red-500/20 backdrop-blur-lg border border-red-500/30 rounded-2xl text-white">

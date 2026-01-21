@@ -1,4 +1,4 @@
-import { memo, useMemo } from 'react'
+import { memo } from 'react'
 import { useThemeStyles } from '../context'
 import { getWeatherIconUrl } from '../constants'
 import type { WeatherData } from '../types'
@@ -18,7 +18,7 @@ function WeatherCardComponent({ weather }: WeatherCardProps) {
         detailIconBg,
     } = useThemeStyles()
 
-    const iconUrl = useMemo(() => getWeatherIconUrl(weather.icon), [weather.icon])
+    const iconUrl = getWeatherIconUrl(weather.icon)
 
     return (
         <div

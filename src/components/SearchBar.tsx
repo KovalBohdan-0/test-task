@@ -1,4 +1,4 @@
-import { useState, useCallback, memo, FormEvent } from 'react'
+import { useState, memo, FormEvent } from 'react'
 import { useThemeStyles } from '../context'
 
 interface SearchBarProps {
@@ -12,20 +12,17 @@ function SearchBarComponent({ onSearch, isLoading }: SearchBarProps) {
 
     const bgClass = isSnowy ? 'bg-white/40 focus:bg-white/60' : 'bg-white/15 focus:bg-white/25'
 
-    const handleSubmit = useCallback(
-        (e: FormEvent) => {
-            e.preventDefault()
-            const trimmedCity = city.trim()
-            if (trimmedCity) {
-                onSearch(trimmedCity)
-            }
-        },
-        [city, onSearch]
-    )
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault()
+        const trimmedCity = city.trim()
+        if (trimmedCity) {
+            onSearch(trimmedCity)
+        }
+    }
 
-    const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCity(e.target.value)
-    }, [])
+    }
 
     return (
         <form className="flex gap-3 w-full max-w-lg" onSubmit={handleSubmit}>

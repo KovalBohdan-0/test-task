@@ -1,4 +1,3 @@
-import { useCallback, useMemo } from 'react'
 import { SearchBar, WeatherCard, EmptyState, ErrorState, LoadingState } from './components'
 import { ThemeProvider } from './context'
 import { useWeather } from './hooks'
@@ -16,26 +15,14 @@ function App() {
         refetch,
     } = useWeather()
 
-    const handleSearch = useCallback(
-        (city: string) => {
-            search(city)
-        },
-        [search]
-    )
 
-    const handleRetry = useCallback(() => {
-        refetch()
-    }, [refetch])
 
     const showLoading = isLoading || isFetching
     const showError = !!errorMessage && !showLoading
     const showWeather = !!weather && !showLoading && !showError
     const showEmpty = !weather && !showLoading && !showError
 
-    const backgroundClass = useMemo(
-        () => BACKGROUND_GRADIENTS[category],
-        [category]
-    )
+    const backgroundClass = BACKGROUND_GRADIENTS[category]
 
     return (
         <ThemeProvider category={category}>
@@ -45,12 +32,12 @@ function App() {
                 <main className="flex flex-col items-center gap-8 w-full max-w-lg relative z-10">
                     <Header category={category} />
 
-                    <SearchBar onSearch={handleSearch} isLoading={showLoading} />
+                    <SearchBar onSearch={search} isLoading={showLoading} />
 
                     {showError && (
                         <ErrorState
                             message={errorMessage!}
-                            onRetry={handleRetry}
+                            onRetry={refetch}
                             showRetry={true}
                         />
                     )}
